@@ -1,0 +1,23 @@
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://github.com/trankhai01">Sources</a>
+          </li>
+        </ul>
+        <form class="d-flex me-3" action="{{ url_for('search') }}" method="get">
+          <input class="form-control me-2" type="search" name="query" placeholder="Tìm kiếm" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Tìm</button>
+        </form>        
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="{{ url_for('logout') }}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Đăng xuất</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

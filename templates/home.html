@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Trang danh sách nhân viên">
+    <title>Management Employee</title>
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body>
+    {% include 'navigation.html' %}
+    <main>
+        <div class="container py-5 mt-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="py-3">List of Employees:</h1>
+                <a href="{{ url_for('add') }}" class="btn btn-primary">Create Emloyee</a>
+            </div>
+            <table class="table table-bordered table-striped py-5 bg-light" >
+            
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Day Start</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Actions</th>
+                {% for i in results %}
+                <tr scope="row">
+                    <td>{{i[0]}}</td>
+                    <td>{{i[1]}}</td>
+                    <td>{{i[2]}}</td>
+                    <td>{{i[3]}}</td>
+                    <td>{{i[4]}}</td>
+                    <td>{{i[5]}}</td>
+                    <td>{{i[6]}}</td>
+                    <td>{{i[7]}}</td>
+                    <td>
+                        <a href="/update" data-bs-toggle="modal" data-bs-target="#edit{{i[0]}}" class="btn btn-warning"  value="Edit">Update</a>
+                        <a href="/delete/{{ i[0] }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                    </td>
+                </tr>
+            <div class="modal fade" id="edit{{i[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="{{ url_for('update') }}" method = "POST">
+                        <div class="row">
+                            <div class="mb-3">
+                                <label>ID:</label>
+                                <input class="form-control" type="text"  name="id" value="{{i[0]}}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input class="form-control" type = "text" name = "name" value="{{i[1]}}" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Age</label>
+                                <input class="form-control" type = "text" name = "age" value="{{i[2]}}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Day Start</label>
+                                <input class="form-control" type="date" name="doj" value="{{i[3]}}" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input class="form-control" type = "text" name = "email" value="{{i[4]}}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Gender</label>
+                                <select class="form-control" name="gender" value="{{i[5]}}" required>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input class="form-control" type = "text" name = "contact" value="{{i[6]}}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input class="form-control" type = "text" name = "address" value="{{i[7]}}"/>
+                            </div>
+                        </div>
+                            <button class="btn btn-primary" type = "submit">submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            </table>
+            </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>     
+</body>
+</html>

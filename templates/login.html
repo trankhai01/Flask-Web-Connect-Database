@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Trang đăng nhập của web quản lý">
+    <title>Login</title>
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body>
+    <main>
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 mb-3">Sign In</h1>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form method="post" action="" class="p-2 p-md-5 border rounded-3 bg-light">
+                        {{ form.hidden_tag() }}
+                        <p class="fw-bold w-100 {% if msg %}text-danger{% else %}text-dark{% endif %}">
+                            {% if msg %}
+                                {{ msg | safe }}
+                            {% else %}
+                                Vui lòng điền thông tin
+                            {% endif %}                                  
+                        </p>
+                        <br />
+                        <div class="form-floating mb-3">
+                            {{ form.username(class="form-control") }}
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{ form.password(class="form-control", type="password") }}
+                            <label for="password">Password</label>
+                        </div>
+                        <br />
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+                        <hr class="my-4">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
